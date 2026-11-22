@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="only light">
+<meta name="supported-color-schemes" content="light">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>التسجيل في أكاديمية الهدى</title>
+<meta name="description" content="سجّل ابنك في دروس أونلاين مباشرة، جميع المواد وجميع المراحل.">
+<style>
+*{box-sizing:border-box}
+:root{color-scheme:only light}
+html{background:#f6f3ec;color:#10213f}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;background:#f6f3ec;color:#10213f;line-height:1.6}
+header{background:#10213f;color:#fff;padding:22px 18px 26px;text-align:center}
+header h1{margin:0 0 6px;font-size:22px;line-height:1.4}
+header p{margin:0;color:#e3c978;font-size:15px}
+main{max-width:460px;margin:0 auto;padding:18px}
+.card{background:#fff;border-radius:14px;padding:18px;box-shadow:0 1px 6px rgba(16,33,63,.1)}
+label{display:block;font-weight:700;margin:14px 0 6px;font-size:15px}
+input,select{width:100%;font:inherit;font-size:16px;padding:12px;border:1.5px solid #c9ced8;border-radius:10px;background:#fff;color:#10213f}
+input:focus,select:focus{outline:none;border-color:#c9a24a}
+button{width:100%;margin-top:20px;padding:15px;font:inherit;font-size:17px;font-weight:700;color:#10213f;background:#c9a24a;border:0;border-radius:12px;cursor:pointer}
+.hint{font-size:13px;color:#5b6577;text-align:center;margin:10px 0 0}
+.err{color:#b3261e;font-size:13px;margin:4px 0 0;display:none}
+.prices{margin:16px 0 0;padding:14px 18px;background:#fff;border-radius:14px;font-size:14px;box-shadow:0 1px 6px rgba(16,33,63,.1)}
+.prices b{display:block;margin-bottom:4px}
+.prices span{display:inline-block;margin:2px 0 2px 14px}
+#fb{display:none;margin-top:14px;text-align:center;font-size:15px}
+#fb a{color:#10213f;font-weight:700}
+</style>
+</head>
+<body>
+<header>
+<h1>سجّل ابنك في أكاديمية الهدى</h1>
+<p>دروس أونلاين مباشرة، جميع المواد وجميع المراحل</p>
+</header>
+<main>
+<form class="card" id="f" novalidate>
+<label for="n">اسم الطالب</label>
+<input id="n" autocomplete="off" required>
+<label for="c">الدولة</label>
+<select id="c" required>
+<option value="">اختر الدولة</option>
+<option>السعودية</option>
+<option>الإمارات</option>
+<option>قطر</option>
+<option>الكويت</option>
+<option>دولة عربية أخرى</option>
+</select>
+<label for="g">الصف الدراسي</label>
+<input id="g" placeholder="مثال: الصف الرابع الابتدائي" autocomplete="off" required>
+<label for="s">المادة</label>
+<input id="s" placeholder="مثال: رياضيات، أو جميع المواد" autocomplete="off" required>
+<p class="err" id="e">من فضلك املأ جميع الخانات.</p>
+<button type="submit">أرسل على واتساب</button>
+<p class="hint">يفتح واتساب برسالة جاهزة بالبيانات اللي كتبتها.</p>
+<p id="fb">لو ما فتحش واتساب، <a id="l" href="#">اضغط هنا</a>.</p>
+</form>
+<div class="prices">
+<b>الباقة الشهرية: ٨ حصص</b>
+<span>السعودية 160 ريال</span><span>الإمارات 155 درهم</span><span>قطر 155 ريال</span><span>الكويت 13 دينار</span>
+</div>
+</main>
+<script>
+(function(){
+var S={tiktok:"تيك توك",instagram:"انستجرام",youtube:"يوتيوب",facebook:"فيسبوك",linktree:"لينكتري"};
+var q=location.search.match(/[?&]src=([^&#]*)/i),src="";
+if(q){var k=decodeURIComponent(q[1]).toLowerCase();src=S[k]||""}
+var f=document.getElementById("f");
+function v(i){return document.getElementById(i).value.replace(/^\s+|\s+$/g,"")}
+f.addEventListener("submit",function(ev){
+ev.preventDefault();
+var n=v("n"),c=v("c"),g=v("g"),s=v("s"),e=document.getElementById("e");
+if(!n||!c||!g||!s){e.style.display="block";return}
+e.style.display="none";
+var t="السلام عليكم، أرغب في التسجيل في أكاديمية الهدى.\nاسم الطالب: "+n+"\nالدولة: "+c+"\nالصف الدراسي: "+g+"\nالمادة: "+s;
+if(src)t+="\nوصلت لكم من: "+src;
+var u="https://wa.me/201061179521?text="+encodeURIComponent(t);
+var l=document.getElementById("l");l.href=u;
+document.getElementById("fb").style.display="block";
+window.location.href=u;
+});
+})();
+</script>
+</body>
+</html>
